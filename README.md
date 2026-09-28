@@ -1,6 +1,6 @@
-# ecom-api-with-auth
+# ShopFreak API (ecom-api-with-auth)
 
-A REST API for a small e-commerce platform: JWT access + refresh token authentication (buyer/seller roles), product CRUD with per-size stock, and a per-user shopping cart. Built with Express + MongoDB (Mongoose) + express-validator.
+Backend for **ShopFreak**, a small e-commerce platform: JWT access + refresh token authentication (buyer/seller roles), product CRUD with per-size stock, and a per-user shopping cart. Built with Express + MongoDB (Mongoose) + express-validator.
 
 ## Setup
 

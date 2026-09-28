@@ -36,7 +36,7 @@ app.use(express.json({ limit: "10kb" }));
 app.use(sanitizeInput);
 
 app.get("/", (req, res) => {
-  res.json({ success: true, message: "Ecom API is running" });
+  res.json({ success: true, message: "ShopFreak API is running" });
 });
 
 app.use("/api/auth", authLimiter, authRoutes);
