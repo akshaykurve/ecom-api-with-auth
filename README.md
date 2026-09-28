@@ -85,3 +85,4 @@ npm run dev            # starts the server with nodemon on PORT (default 5000)
 ## Repository note
 
 The assignment asks for backend + frontend in a single repository. This backend (`ecom-api-with-auth`) already has its own git remote; the frontend (`ecom-frontend`) is a sibling folder without git initialized yet. Combine them into one repo (e.g. move `ecom-frontend` into this repo as a subfolder, or create a fresh parent repo containing both) before final submission.
+ 
