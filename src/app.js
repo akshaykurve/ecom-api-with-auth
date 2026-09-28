@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
@@ -37,6 +38,21 @@ app.use(sanitizeInput);
 
 app.get("/", (req, res) => {
   res.json({ success: true, message: "ShopFreak API is running" });
+});
+
+// Unauthenticated, unrate-limited endpoint for uptime monitors / platform
+// health checks (Render, Railway, k8s, ...). Reports 503 if MongoDB isn't
+// connected, since "the process is alive" isn't the same as "the API works".
+app.get("/health", (req, res) => {
+  const dbConnected = mongoose.connection.readyState === 1;
+
+  res.status(dbConnected ? 200 : 503).json({
+    success: dbConnected,
+    status: dbConnected ? "ok" : "degraded",
+    db: dbConnected ? "connected" : "disconnected",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
 });
 
 app.use("/api/auth", authLimiter, authRoutes);

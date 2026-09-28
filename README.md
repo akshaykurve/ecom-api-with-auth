@@ -40,6 +40,7 @@ npm run dev            # starts the server with nodemon on PORT (default 5000)
 - **Graceful shutdown**: `server.js` handles `SIGTERM`/`SIGINT` by finishing in-flight requests and closing the MongoDB connection before exiting, so platform restarts/deploys don't drop connections mid-request.
 - `app.set("trust proxy", 1)` so secure cookies and client IPs (used by the rate limiter) work correctly behind a reverse proxy (Render, Railway, Heroku, etc.).
 - `express.json({ limit: "10kb" })` caps request body size.
+- **`GET /health`**: unauthenticated, not rate-limited. Returns `200` with `{status: "ok", db: "connected", uptime, timestamp}`, or `503` with `db: "disconnected"` if MongoDB is down - point your platform's health check / uptime monitor at this, not `/`.
 
 ## Deployment
 
